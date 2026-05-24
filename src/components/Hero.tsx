@@ -15,14 +15,6 @@ export default function Hero() {
             Luodezhi
           </span>
         </h1>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300 mb-6">
-          Full Stack Developer &amp; Software Engineer
-        </h2>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-          I build elegant, performant web applications with modern technologies.
-          Passionate about clean code, great user experiences, and continuous learning.
-        </p>
-
         <div className="flex flex-wrap gap-4 justify-center mb-12">
           <a
             href="#projects"
