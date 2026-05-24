@@ -15,6 +15,10 @@ export default function Hero() {
             Luodezhi
           </span>
         </h1>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+          History taught me how to think. Finance taught me how to apply it. AI is what&apos;s next.
+        </p>
+
         <div className="flex flex-wrap gap-4 justify-center mb-12">
           <a
             href="#projects"
