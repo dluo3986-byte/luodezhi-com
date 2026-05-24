@@ -1,19 +1,33 @@
 const skills = [
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
+    category: "Microsoft Office",
+    items: ["Microsoft PowerPoint", "Microsoft Excel", "Microsoft Word"],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "Python", "Go", "REST APIs", "GraphQL"],
+    category: "Finance & Compliance",
+    items: ["Financial Analysis", "Regulatory Compliance", "KYC/AML"],
   },
   {
-    category: "Database",
-    items: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Prisma"],
+    category: "AI & Technology",
+    items: [
+      "AI Tools (ChatGPT, Claude, Midjourney)",
+      "AI Agent Development",
+      "Prompt Engineering",
+      "Content Creation",
+    ],
   },
   {
-    category: "DevOps & Tools",
-    items: ["Git", "Docker", "CI/CD", "Linux", "AWS"],
+    category: "Research & Communication",
+    items: [
+      "Research & Analysis",
+      "Academic Writing",
+      "Data Analysis",
+      "Critical Thinking",
+      "Cross-Cultural Communication",
+      "Bilingual Communication",
+      "Presentation Skills",
+      "Project Management",
+    ],
   },
 ];
 
@@ -23,10 +37,10 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-3">
-            What I Work With
+            What I Bring
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            Skills &amp; Technologies
+            Skills &amp; Expertise
           </h2>
         </div>
 
