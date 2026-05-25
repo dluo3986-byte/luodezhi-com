@@ -13,14 +13,31 @@ async function sha256(text: string): Promise<string> {
 
 interface Trip {
   destination: string;
-  year: string;
+  dates: string;
   description: string;
   emoji: string;
+  highlights: string[];
+  rating?: string;
+  status?: "completed" | "in-progress";
 }
 
 const trips: Trip[] = [
-  // Add trips here later, e.g.:
-  // { destination: "Tokyo, Japan", year: "2024", description: "...", emoji: "🇯🇵" },
+  {
+    destination: "New England Road Trip",
+    dates: "May 2026",
+    emoji: "🦞",
+    status: "in-progress",
+    description:
+      "A family road trip from Long Island north through Portsmouth, NH and up to Bar Harbor, Maine — still in progress.",
+    highlights: [
+      "Day 1: Departed Long Island, drove up to Portsmouth, NH",
+      "Day 2: Explored downtown Portsmouth — visited the theater and picked up local souvenirs",
+      "Highlight lunch at Stewman's Lobster Pound, Bar Harbor: Lobster Roll, Lobster Bisque & Mussel (rating: 4.5/5 — mussel was slightly off)",
+      "Visited Acadia National Park and photographed the iconic Bass Harbor Head Light Station with family",
+      "Arrived Bar Harbor around 3:30 PM — stunning coastal scenery",
+    ],
+    rating: "4.5 / 5",
+  },
 ];
 
 export default function Travels() {
@@ -78,25 +95,53 @@ export default function Travels() {
               </button>
             </form>
           </div>
-        ) : trips.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="text-5xl mb-6">✈️</div>
-            <h3 className="text-white font-semibold text-xl mb-3">Coming Soon</h3>
-            <p className="text-gray-400 max-w-md">
-              Travel memories and stories will be added here soon. Check back later!
-            </p>
-          </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {trips.map((trip) => (
               <div
                 key={trip.destination}
-                className="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-indigo-500/50 transition-colors"
+                className="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-indigo-500/50 transition-colors flex flex-col gap-4"
               >
-                <div className="text-4xl mb-4">{trip.emoji}</div>
-                <h3 className="text-white font-semibold text-lg mb-1">{trip.destination}</h3>
-                <p className="text-indigo-400 text-sm mb-3">{trip.year}</p>
+                {/* Header */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-4xl">{trip.emoji}</span>
+                    <div>
+                      <h3 className="text-white font-semibold text-lg leading-tight">{trip.destination}</h3>
+                      <p className="text-indigo-400 text-sm">{trip.dates}</p>
+                    </div>
+                  </div>
+                  {trip.status === "in-progress" && (
+                    <span className="shrink-0 px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium rounded-full">
+                      In Progress
+                    </span>
+                  )}
+                </div>
+
+                {/* Description */}
                 <p className="text-gray-400 text-sm leading-relaxed">{trip.description}</p>
+
+                {/* Highlights */}
+                <div>
+                  <p className="text-gray-300 text-xs font-semibold uppercase tracking-wider mb-3">Highlights</p>
+                  <ul className="space-y-2">
+                    {trip.highlights.map((h) => (
+                      <li key={h} className="flex gap-2 text-gray-400 text-sm leading-relaxed">
+                        <span className="text-indigo-400 shrink-0 mt-0.5">▸</span>
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Rating */}
+                {trip.rating && (
+                  <div className="flex items-center gap-2 pt-2 border-t border-gray-800">
+                    <span className="text-yellow-400 text-sm">★</span>
+                    <span className="text-gray-300 text-sm font-medium">{trip.rating}</span>
+                    <span className="text-gray-500 text-sm">overall rating</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
