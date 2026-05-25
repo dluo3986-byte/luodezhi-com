@@ -11,7 +11,14 @@ async function sha256(text: string): Promise<string> {
     .join("");
 }
 
-const trips = [
+interface Trip {
+  destination: string;
+  year: string;
+  description: string;
+  emoji: string;
+}
+
+const trips: Trip[] = [
   // Add trips here later, e.g.:
   // { destination: "Tokyo, Japan", year: "2024", description: "...", emoji: "🇯🇵" },
 ];
