@@ -129,7 +129,7 @@ const trips: Trip[] = [
     upcomingPlans: [
       "Hopewell Rocks Provincial Park (May 27)",
       "Prince Edward Island (stay TBD — subject to hotel pricing)",
-      "Quebec City",
+      "Quebec City (2-night stay)",
       "Return to Long Island — June 1st",
     ],
   },
