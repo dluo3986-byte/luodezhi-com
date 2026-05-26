@@ -122,12 +122,7 @@ const trips: Trip[] = [
       },
       {
         day: 10,
-        title: "June 1 — TBD",
-        highlights: ["Details coming soon — stay tuned!"],
-      },
-      {
-        day: 11,
-        title: "June 2 — Return to Long Island",
+        title: "June 1 — Return to Long Island",
         highlights: ["Details coming soon — stay tuned!"],
       },
     ],
@@ -135,7 +130,7 @@ const trips: Trip[] = [
       "Hopewell Rocks Provincial Park (May 27)",
       "Prince Edward Island (stay TBD — subject to hotel pricing)",
       "Quebec City",
-      "Return to Long Island — June 2nd",
+      "Return to Long Island — June 1st",
     ],
   },
   {
