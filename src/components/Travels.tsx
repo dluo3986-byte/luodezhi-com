@@ -129,8 +129,17 @@ const trips: Trip[] = [
       },
       {
         day: 2,
-        title: "December 25 — Christmas in Bolivia",
-        highlights: ["Details coming soon — stay tuned!"],
+        title: "December 25 — Christmas Day: Salt Flats & Altitude Sickness",
+        highlights: [
+          "Started the day with a homemade breakfast prepared by our guide — a warm and welcome start to Christmas morning",
+          "Continued exploring the Salt Flats and surrounding park — stunning landscapes in every direction",
+          "Got a close-up view of local wildlife including wild flamingoes",
+          "Made our way to the next hotel for the evening",
+          "Hotel had no Wi-Fi — and even if it did, guests would have to pay extra for a poor connection",
+          "Evening took a turn: began experiencing severe vomiting and intense headaches that felt like being pounded into the ground",
+          "Initially suspected food poisoning — soon realized it was high altitude sickness from the elevation of the Bolivian altiplano",
+        ],
+        rating: "4.5 / 5",
       },
       {
         day: 3,
