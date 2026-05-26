@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const HASH = "dfd1d70782dbb6002cec7b1e95fc3ea1dafb534f3e17b11e57d01dd640a9c35c";
 
@@ -11,14 +12,22 @@ async function sha256(text: string): Promise<string> {
     .join("");
 }
 
+interface Day {
+  day: number;
+  title: string;
+  highlights: string[];
+  photos?: { src: string; alt: string }[];
+}
+
 interface Trip {
   destination: string;
   dates: string;
   description: string;
   emoji: string;
-  highlights: string[];
-  rating?: string;
   status?: "completed" | "in-progress";
+  rating?: string;
+  days: Day[];
+  upcomingPlans?: string[];
 }
 
 const trips: Trip[] = [
@@ -27,16 +36,56 @@ const trips: Trip[] = [
     dates: "May 2026",
     emoji: "🦞",
     status: "in-progress",
+    rating: "4.3 / 5",
     description:
-      "A family road trip from Long Island north through Portsmouth, NH and up to Bar Harbor, Maine — still in progress.",
-    highlights: [
-      "Day 1: Departed Long Island, drove up to Portsmouth, NH",
-      "Day 2: Explored downtown Portsmouth — visited the theater and picked up local souvenirs",
-      "Highlight lunch at Stewman's Lobster Pound, Bar Harbor: Lobster Roll, Lobster Bisque & Mussel (rating: 4.5/5 — mussel was slightly off)",
-      "Visited Acadia National Park and photographed the iconic Bass Harbor Head Light Station with family",
-      "Arrived Bar Harbor around 3:30 PM — stunning coastal scenery",
+      "A family road trip from Long Island north through Portsmouth NH, Bar Harbor ME, and continuing on to Moncton, Hopewell Rocks, and Quebec — with a return to New York by June 1st.",
+    days: [
+      {
+        day: 1,
+        title: "Long Island → Portsmouth, NH",
+        highlights: [
+          "Departed Long Island and drove north",
+          "Arrived in Portsmouth, NH for the night",
+        ],
+      },
+      {
+        day: 2,
+        title: "Portsmouth Sightseeing → Bar Harbor, ME",
+        highlights: [
+          "Explored downtown Portsmouth — visited the historic theater and picked up local souvenirs",
+          "Arrived in Bar Harbor around 3:30 PM",
+          "Lunchner at Stewman's Lobster Pound: Lobster Roll, Lobster Bisque & Mussels",
+          "Personal rating for Stewman's: 4.5/5 — food was great, mussel was slightly off",
+          "Visited Acadia National Park and photographed Bass Harbor Head Light Station with family",
+        ],
+        photos: [
+          {
+            src: "/travels/new-england/lighthouse-1.jpg",
+            alt: "Bass Harbor Head Light Station — view from above with the keeper's house and bay beyond",
+          },
+          {
+            src: "/travels/new-england/lighthouse-2.jpg",
+            alt: "Bass Harbor Head Light Station — perched on rugged coastal rocks at Acadia National Park",
+          },
+        ],
+      },
+      {
+        day: 3,
+        title: "Bar Harbor — Rest Day & Acadia Sunset",
+        highlights: [
+          "Spent most of the day at Best Western hotel — rest and recovery",
+          "Headed out to Acadia National Park in the late afternoon",
+          "Watched the sunset before 8:00 PM — stunning coastal views",
+          "Good day overall; a minor family argument kept the mood slightly subdued",
+        ],
+      },
     ],
-    rating: "4.5 / 5",
+    upcomingPlans: [
+      "Moncton, New Brunswick",
+      "Hopewell Rocks Provincial Park",
+      "Quebec City",
+      "Return to New York by June 1st",
+    ],
   },
 ];
 
@@ -44,6 +93,7 @@ export default function Travels() {
   const [input, setInput] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [error, setError] = useState(false);
+  const [missingPhotos, setMissingPhotos] = useState<Set<string>>(new Set());
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -57,9 +107,13 @@ export default function Travels() {
     }
   }
 
+  function handleImageError(src: string) {
+    setMissingPhotos((prev) => new Set(prev).add(src));
+  }
+
   return (
     <section id="travels" className="py-24 bg-gray-900/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-3">
             Around the World
@@ -84,9 +138,7 @@ export default function Travels() {
                 placeholder="Password"
                 className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors text-sm"
               />
-              {error && (
-                <p className="text-red-400 text-xs">Incorrect password. Try again.</p>
-              )}
+              {error && <p className="text-red-400 text-xs">Incorrect password. Try again.</p>}
               <button
                 type="submit"
                 className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-colors duration-200 text-sm"
@@ -96,52 +148,107 @@ export default function Travels() {
             </form>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="space-y-10">
             {trips.map((trip) => (
-              <div
-                key={trip.destination}
-                className="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-indigo-500/50 transition-colors flex flex-col gap-4"
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
+              <div key={trip.destination} className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
+
+                {/* Trip header */}
+                <div className="p-6 border-b border-gray-800 flex flex-wrap items-start justify-between gap-4">
+                  <div className="flex items-center gap-4">
                     <span className="text-4xl">{trip.emoji}</span>
                     <div>
-                      <h3 className="text-white font-semibold text-lg leading-tight">{trip.destination}</h3>
+                      <h3 className="text-white font-bold text-xl">{trip.destination}</h3>
                       <p className="text-indigo-400 text-sm">{trip.dates}</p>
                     </div>
                   </div>
-                  {trip.status === "in-progress" && (
-                    <span className="shrink-0 px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium rounded-full">
-                      In Progress
-                    </span>
+                  <div className="flex items-center gap-3">
+                    {trip.rating && (
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-yellow-400 text-sm font-medium">
+                        <span>★</span> {trip.rating}
+                      </span>
+                    )}
+                    {trip.status === "in-progress" && (
+                      <span className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium rounded-full">
+                        In Progress
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <p className="text-gray-400 text-sm leading-relaxed mb-8">{trip.description}</p>
+
+                  {/* Day-by-day timeline */}
+                  <div className="relative">
+                    <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-800" />
+                    <div className="space-y-8">
+                      {trip.days.map((day) => (
+                        <div key={day.day} className="relative pl-12">
+                          <div className="absolute left-0 top-1 w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0">
+                            {day.day}
+                          </div>
+                          <h4 className="text-white font-semibold mb-3">{day.title}</h4>
+                          <ul className="space-y-2 mb-4">
+                            {day.highlights.map((h) => (
+                              <li key={h} className="flex gap-2 text-gray-400 text-sm leading-relaxed">
+                                <span className="text-indigo-400 shrink-0 mt-0.5">▸</span>
+                                {h}
+                              </li>
+                            ))}
+                          </ul>
+
+                          {/* Photos */}
+                          {day.photos && day.photos.length > 0 && (
+                            <div className="grid grid-cols-2 gap-3 mt-4">
+                              {day.photos.map((photo) =>
+                                missingPhotos.has(photo.src) ? (
+                                  <div
+                                    key={photo.src}
+                                    className="aspect-video bg-gray-800 rounded-xl border border-dashed border-gray-700 flex flex-col items-center justify-center text-gray-600 text-xs gap-2"
+                                  >
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    Photo coming soon
+                                  </div>
+                                ) : (
+                                  <div key={photo.src} className="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+                                    <Image
+                                      src={photo.src}
+                                      alt={photo.alt}
+                                      fill
+                                      className="object-cover"
+                                      onError={() => handleImageError(photo.src)}
+                                    />
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Upcoming plans */}
+                  {trip.upcomingPlans && (
+                    <div className="mt-8 p-4 bg-gray-800/60 rounded-xl border border-gray-700">
+                      <p className="text-gray-300 text-xs font-semibold uppercase tracking-wider mb-3">
+                        🗺️ Upcoming Plans
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {trip.upcomingPlans.map((plan) => (
+                          <span
+                            key={plan}
+                            className="px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-sm rounded-full"
+                          >
+                            {plan}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   )}
                 </div>
-
-                {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed">{trip.description}</p>
-
-                {/* Highlights */}
-                <div>
-                  <p className="text-gray-300 text-xs font-semibold uppercase tracking-wider mb-3">Highlights</p>
-                  <ul className="space-y-2">
-                    {trip.highlights.map((h) => (
-                      <li key={h} className="flex gap-2 text-gray-400 text-sm leading-relaxed">
-                        <span className="text-indigo-400 shrink-0 mt-0.5">▸</span>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Rating */}
-                {trip.rating && (
-                  <div className="flex items-center gap-2 pt-2 border-t border-gray-800">
-                    <span className="text-yellow-400 text-sm">★</span>
-                    <span className="text-gray-300 text-sm font-medium">{trip.rating}</span>
-                    <span className="text-gray-500 text-sm">overall rating</span>
-                  </div>
-                )}
               </div>
             ))}
           </div>
