@@ -76,9 +76,18 @@ const trips: Trip[] = [
           "Good day overall; a minor family dispute about wet jeans — specifically where to hang them to dry (settled on placing them under the exhaust vents)",
         ],
       },
+      {
+        day: 4,
+        title: "En Route to Moncton, New Brunswick",
+        highlights: [
+          "Departing Bar Harbor and heading to Moncton, NB for the evening",
+          "Arriving in Moncton for one night, departing the following day",
+          "Hotel accommodation still being arranged",
+        ],
+      },
     ],
     upcomingPlans: [
-      "Moncton, New Brunswick",
+      "Moncton, New Brunswick (Day 4 — one night)",
       "Hopewell Rocks Provincial Park",
       "Quebec City",
       "Return to New York by June 1st",
