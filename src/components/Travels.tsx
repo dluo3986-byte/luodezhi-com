@@ -69,10 +69,10 @@ const trips: Trip[] = [
       },
       {
         day: 3,
-        title: "Bar Harbor — Rest Day & Acadia Sunset",
+        title: "Bar Harbor — Rain Day, Acadia & Sunset",
         highlights: [
-          "Spent most of the day at Best Western hotel — rest and recovery",
-          "Headed out to Acadia National Park in the late afternoon",
+          "Heavy rain throughout the day kept us confined to the Best Western hotel for most of the day",
+          "Headed out to Acadia National Park in the late afternoon once the weather cleared",
           "Watched the sunset before 8:00 PM — stunning coastal views",
           "Good day overall; a minor family dispute about wet jeans — specifically where to hang them to dry (settled on placing them under the exhaust vents)",
         ],
@@ -99,6 +99,7 @@ const trips: Trip[] = [
     upcomingPlans: [
       "Moncton, New Brunswick (Day 4 — one night)",
       "Hopewell Rocks Provincial Park",
+      "Prince Edward Island (stay TBD — subject to hotel pricing)",
       "Quebec City",
       "Return to New York by June 1st",
     ],
