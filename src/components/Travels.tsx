@@ -16,6 +16,7 @@ interface Day {
   day: number;
   title: string;
   highlights: string[];
+  rating?: string;
   photos?: { src: string; alt: string }[];
 }
 
@@ -109,15 +110,22 @@ const trips: Trip[] = [
       },
       {
         period: "December 24, 2025",
-        note: "Departed for Bolivia — trip officially begins.",
+        note: "Departed for Bolivia — multiple stops via Lima, Peru and La Paz, Bolivia before reaching final destination Uyuni.",
         type: "info",
       },
     ],
     days: [
       {
         day: 1,
-        title: "December 24 — Arrival",
-        highlights: ["Details coming soon — stay tuned!"],
+        title: "December 24 — Arrival in Uyuni & The Salt Flats",
+        highlights: [
+          "Long journey with layovers in Lima, Peru and La Paz, Bolivia before finally arriving in Uyuni",
+          "Visited the world-famous Uyuni Salt Flats (Salar de Uyuni) — breathtaking, vast white landscape",
+          "The exhaustion from travel caught up with everyone — fatigue and irritability led to multiple arguments throughout the day",
+          "Tensions were resolved by end of the day — spirits recovered",
+          "Checked into a unique salt hotel where the beds were made entirely of salt blocks — an experience in itself, though quite uncomfortable especially on the back",
+        ],
+        rating: "4.0 / 5",
       },
       {
         day: 2,
@@ -284,6 +292,15 @@ export default function Travels() {
                               </li>
                             ))}
                           </ul>
+
+                          {/* Day rating */}
+                          {day.rating && (
+                            <div className="flex items-center gap-2 mt-3">
+                              <span className="text-yellow-400 text-sm">★</span>
+                              <span className="text-gray-300 text-sm font-medium">{day.rating}</span>
+                              <span className="text-gray-500 text-sm">day rating</span>
+                            </div>
+                          )}
 
                           {/* Photos */}
                           {day.photos && day.photos.length > 0 && (
