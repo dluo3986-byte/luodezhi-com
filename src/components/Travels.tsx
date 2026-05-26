@@ -65,16 +65,6 @@ const trips: Trip[] = [
           "Personal rating for Stewman's: 4.5/5 — food was great, mussel was slightly off",
           "Visited Acadia National Park and photographed Bass Harbor Head Light Station with family",
         ],
-        photos: [
-          {
-            src: "/travels/new-england/lighthouse-1.jpg",
-            alt: "Bass Harbor Head Light Station — view from above with the keeper's house and bay beyond",
-          },
-          {
-            src: "/travels/new-england/lighthouse-2.jpg",
-            alt: "Bass Harbor Head Light Station — perched on rugged coastal rocks at Acadia National Park",
-          },
-        ],
       },
       {
         day: 3,
@@ -83,7 +73,7 @@ const trips: Trip[] = [
           "Spent most of the day at Best Western hotel — rest and recovery",
           "Headed out to Acadia National Park in the late afternoon",
           "Watched the sunset before 8:00 PM — stunning coastal views",
-          "Good day overall; a minor family argument kept the mood slightly subdued",
+          "Good day overall; a minor family dispute about wet jeans — specifically where to hang them to dry (settled on placing them under the exhaust vents)",
         ],
       },
     ],
