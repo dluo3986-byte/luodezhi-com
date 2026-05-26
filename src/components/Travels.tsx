@@ -50,7 +50,7 @@ const trips: Trip[] = [
     days: [
       {
         day: 1,
-        title: "Long Island → Portsmouth, NH",
+        title: "May 23 — Long Island → Portsmouth, NH",
         highlights: [
           "Departed Long Island and drove north",
           "Arrived in Portsmouth, NH for the night",
@@ -58,7 +58,7 @@ const trips: Trip[] = [
       },
       {
         day: 2,
-        title: "Portsmouth Sightseeing → Bar Harbor, ME",
+        title: "May 24 — Portsmouth Sightseeing → Bar Harbor, ME",
         highlights: [
           "Explored downtown Portsmouth — visited the historic theater and picked up local souvenirs",
           "Arrived in Bar Harbor around 3:30 PM",
@@ -69,7 +69,7 @@ const trips: Trip[] = [
       },
       {
         day: 3,
-        title: "Bar Harbor — Rain Day, Acadia & Sunset",
+        title: "May 25 — Bar Harbor: Rain Day, Acadia & Sunset",
         highlights: [
           "Heavy rain throughout the day kept us confined to the Best Western hotel for most of the day",
           "Headed out to Acadia National Park in the late afternoon once the weather cleared",
@@ -79,7 +79,7 @@ const trips: Trip[] = [
       },
       {
         day: 4,
-        title: "Moncton, New Brunswick — Towel Dispute, Pink Sushi & Tide Planning",
+        title: "May 26 — Moncton, NB: Towel Dispute, Pink Sushi & Tide Planning",
         highlights: [
           "⚠️ Rough start to the morning — a dispute broke out over hotel towels",
           "Learned (or were reminded) that hotel bathrooms typically provide three separate towels: Hand Towel, Facial Towel, and Body Towel",
@@ -95,13 +95,47 @@ const trips: Trip[] = [
           "Still deciding what to do during the interval between High Tide and Low Tide",
         ],
       },
+      {
+        day: 5,
+        title: "May 27 — Hopewell Rocks Provincial Park",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 6,
+        title: "May 28 — TBD",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 7,
+        title: "May 29 — TBD",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 8,
+        title: "May 30 — TBD",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 9,
+        title: "May 31 — TBD",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 10,
+        title: "June 1 — TBD",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 11,
+        title: "June 2 — Return to Long Island",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
     ],
     upcomingPlans: [
-      "Moncton, New Brunswick (Day 4 — one night)",
-      "Hopewell Rocks Provincial Park",
+      "Hopewell Rocks Provincial Park (May 27)",
       "Prince Edward Island (stay TBD — subject to hotel pricing)",
       "Quebec City",
-      "Return to New York by June 1st",
+      "Return to Long Island — June 2nd",
     ],
   },
   {
