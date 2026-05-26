@@ -19,6 +19,12 @@ interface Day {
   photos?: { src: string; alt: string }[];
 }
 
+interface PreTripEvent {
+  period: string;
+  note: string;
+  type?: "warning" | "info";
+}
+
 interface Trip {
   destination: string;
   dates: string;
@@ -26,6 +32,7 @@ interface Trip {
   emoji: string;
   status?: "completed" | "in-progress";
   rating?: string;
+  preTripTimeline?: PreTripEvent[];
   days: Day[];
   upcomingPlans?: string[];
 }
@@ -85,6 +92,64 @@ const trips: Trip[] = [
       "Hopewell Rocks Provincial Park",
       "Quebec City",
       "Return to New York by June 1st",
+    ],
+  },
+  {
+    destination: "Bolivia",
+    dates: "December 24 – 30, 2025",
+    emoji: "🦙",
+    status: "completed",
+    description:
+      "A family trip to Bolivia over the Christmas period — from the chaos of a wasted visa application to an unforgettable week exploring South America.",
+    preTripTimeline: [
+      {
+        period: "Late October – November 2025",
+        note:
+          "Applied for Bolivian tourist visas — $160 per person, $640 total for the family. Shortly after, Bolivia's government changed its entry requirements and visas were no longer required for our nationality. The $640 was non-refundable.",
+        type: "warning",
+      },
+      {
+        period: "December 24, 2025",
+        note: "Departed for Bolivia — trip officially begins.",
+        type: "info",
+      },
+    ],
+    days: [
+      {
+        day: 1,
+        title: "December 24 — Arrival",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 2,
+        title: "December 25 — Christmas in Bolivia",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 3,
+        title: "December 26",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 4,
+        title: "December 27",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 5,
+        title: "December 28",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 6,
+        title: "December 29",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
+      {
+        day: 7,
+        title: "December 30 — Departure",
+        highlights: ["Details coming soon — stay tuned!"],
+      },
     ],
   },
 ];
@@ -177,6 +242,30 @@ export default function Travels() {
 
                 <div className="p-6">
                   <p className="text-gray-400 text-sm leading-relaxed mb-8">{trip.description}</p>
+
+                  {/* Pre-trip timeline */}
+                  {trip.preTripTimeline && (
+                    <div className="mb-8">
+                      <p className="text-gray-300 text-xs font-semibold uppercase tracking-wider mb-4">Pre-Trip</p>
+                      <div className="space-y-3">
+                        {trip.preTripTimeline.map((event) => (
+                          <div
+                            key={event.period}
+                            className={`p-4 rounded-xl border text-sm leading-relaxed ${
+                              event.type === "warning"
+                                ? "bg-red-500/5 border-red-500/20 text-gray-400"
+                                : "bg-indigo-500/5 border-indigo-500/20 text-gray-400"
+                            }`}
+                          >
+                            <span className={`font-semibold block mb-1 ${event.type === "warning" ? "text-red-400" : "text-indigo-400"}`}>
+                              {event.type === "warning" ? "⚠️ " : "📅 "}{event.period}
+                            </span>
+                            {event.note}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Day-by-day timeline */}
                   <div className="relative">
