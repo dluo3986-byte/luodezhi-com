@@ -126,8 +126,15 @@ const trips: Trip[] = [
       },
       {
         day: 7,
-        title: "May 29 — Fredericton & En Route to Quebec City",
-        highlights: ["Details coming soon — stay tuned!"],
+        title: "May 29 — Fredericton Sightseeing & Drive to Quebec City",
+        highlights: [
+          "Morning visit to the Fredericton Legislative Assembly Building and Fredericton City Hall",
+          "Departed Fredericton between 10:30–11:00 AM",
+          "6 to 7 hour drive from Fredericton to Quebec City — long but uneventful",
+          "Crossed the St. Lawrence River by ferry — a scenic highlight of the drive",
+          "Heavy rain set in by the time we arrived in Quebec City",
+          "Checked into the Hilton Quebec at 5:16 PM",
+        ],
       },
       {
         day: 8,
