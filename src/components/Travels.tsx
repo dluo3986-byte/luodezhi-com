@@ -137,6 +137,7 @@ const trips: Trip[] = [
           "Evening: explored parts of Old Quebec City",
           "🍣 Lunchner at Sushi To-Go — 636 Rue Saint-Jean, Québec, QC: sushi, Udon & Gyoza",
           "Food was nice and decent overall — personal gripe: the mushroom in the Udon tasted off",
+          "Total bill: $176 CAD — Personal rating: 4.3/5",
           "Day wrapped up smoothly with no major complications",
         ],
       },
@@ -146,6 +147,7 @@ const trips: Trip[] = [
         highlights: [
           "Started the morning with a solid workout — good way to get the blood pumping",
           "⚠️ Mom got mildly upset about not dressing well enough for the day — dampened the mood somewhat",
+          "⚠️ Another lecture underway — mood not great, not looking forward to the rest of the day",
           "Written mid-morning — day still unfolding, hoping for the best and bracing for the worst",
         ],
       },
