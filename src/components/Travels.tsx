@@ -134,12 +134,20 @@ const trips: Trip[] = [
           "Crossed the St. Lawrence River by ferry — a scenic highlight of the drive",
           "Heavy rain set in by the time we arrived in Quebec City",
           "Checked into the Hilton Quebec at 5:16 PM",
+          "Evening: explored parts of Old Quebec City",
+          "🍣 Lunchner at Sushi To-Go — 636 Rue Saint-Jean, Québec, QC: sushi, Udon & Gyoza",
+          "Food was nice and decent overall — personal gripe: the mushroom in the Udon tasted off",
+          "Day wrapped up smoothly with no major complications",
         ],
       },
       {
         day: 8,
         title: "May 30 — Quebec City (Day 1)",
-        highlights: ["Details coming soon — stay tuned!"],
+        highlights: [
+          "Started the morning with a solid workout — good way to get the blood pumping",
+          "⚠️ Mom got mildly upset about not dressing well enough for the day — dampened the mood somewhat",
+          "Written mid-morning — day still unfolding, hoping for the best and bracing for the worst",
+        ],
       },
       {
         day: 9,
