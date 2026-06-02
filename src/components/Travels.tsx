@@ -78,6 +78,13 @@ const hotels: Hotel[] = [
   },
   {
     trip: "New England Road Trip",
+    name: "Hotel (name TBD)",
+    location: "Saratoga Springs, NY",
+    dates: "May 31",
+    notes: "One night stay on the drive back to Long Island",
+  },
+  {
+    trip: "New England Road Trip",
     name: "Hilton Quebec",
     location: "Quebec City, QC",
     dates: "May 29–31",
@@ -133,6 +140,16 @@ const food: Meal[] = [
     location: "Hopewell Rocks, NB",
     date: "May 28",
     ordered: ["Lunch (details TBD)"],
+  },
+  {
+    trip: "New England Road Trip",
+    name: "Le Continental",
+    location: "Quebec City, QC",
+    date: "May 30",
+    ordered: ["Filet Mignon", "Oysters"],
+    rating: "4.9 / 5",
+    notes: "Delicious meal overall — filet mignon was excellent, oysters were the only complaint",
+    recommended: true,
   },
   {
     trip: "New England Road Trip",
@@ -240,21 +257,33 @@ const activities: Activity[] = [
     title: "Day 8 — Quebec City (Day 1)",
     highlights: [
       "Morning workout — good start to the day",
-      "Two lectures from mom — dampened the mood",
-      "Details still unfolding",
+      "Mom upset about not dressing well enough — two lectures dampened the mood early on",
+      "Visited Montmorency Falls — stunning waterfall views",
+      "Shopping at Quebec Costco — notably cheaper than US Costco locations",
+      "Walked through Old Quebec City and strolled the Plains of Abraham",
+      "🍽️ Dinner at Le Continental — filet mignon was exceptional, oysters were the only weak point",
     ],
+    dayRating: "4.9 / 5 (Le Continental)",
   },
   {
     trip: "New England Road Trip",
     date: "May 31",
-    title: "Day 9 — Quebec City (Day 2)",
-    highlights: ["Details coming soon — stay tuned!"],
+    title: "Day 9 — Quebec City → Saratoga Springs, NY",
+    highlights: [
+      "Morning rain — packed up and began the drive back toward the United States",
+      "Crossed back into the US",
+      "Stayed overnight in Saratoga Springs, NY",
+    ],
   },
   {
     trip: "New England Road Trip",
     date: "June 1",
-    title: "Day 10 — Return to Long Island",
-    highlights: ["Details coming soon — stay tuned!"],
+    title: "Day 10 — Woodbury Common & Return to Long Island ✓",
+    highlights: [
+      "Stopped at Woodbury Common Premium Outlets for clothes shopping",
+      "Long and exhausting day of trying on and taking off clothes",
+      "Finally arrived back home at 8:12 PM — trip complete",
+    ],
   },
   // ── Bolivia ──────────────────────────────────────────────────────
   {
@@ -291,6 +320,22 @@ const activities: Activity[] = [
 ];
 
 const trips = ["New England Road Trip", "Bolivia"] as const;
+
+const tripMeta: Record<string, { emoji: string; dates: string; status: string; rating: string }> = {
+  "New England Road Trip": {
+    emoji: "🦞",
+    dates: "May 23 – June 1, 2026",
+    status: "Completed",
+    rating: "4.3 / 5",
+  },
+  Bolivia: {
+    emoji: "🦙",
+    dates: "December 24–30, 2025",
+    status: "Completed",
+    rating: "TBD",
+  },
+};
+
 const tripEmojis: Record<string, string> = {
   "New England Road Trip": "🦞",
   Bolivia: "🦙",
@@ -380,9 +425,22 @@ export default function Travels() {
                   const tripActivities = activities.filter((a) => a.trip === trip);
                   return (
                     <div key={trip}>
-                      <div className="flex items-center gap-2 mb-6">
-                        <span className="text-2xl">{tripEmojis[trip]}</span>
-                        <h3 className="text-white font-bold text-lg">{trip}</h3>
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{tripEmojis[trip]}</span>
+                          <div>
+                            <h3 className="text-white font-bold text-lg leading-tight">{trip}</h3>
+                            <p className="text-gray-500 text-xs">{tripMeta[trip].dates}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-1 bg-green-500/10 border border-green-500/20 text-green-400 text-xs rounded-full">{tripMeta[trip].status}</span>
+                          {tripMeta[trip].rating !== "TBD" && (
+                            <span className="flex items-center gap-1 px-2.5 py-1 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs rounded-full font-medium">
+                              ★ {tripMeta[trip].rating} overall
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className="relative">
                         <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-800" />
@@ -430,9 +488,22 @@ export default function Travels() {
                   const tripFood = food.filter((f) => f.trip === trip);
                   return (
                     <div key={trip}>
-                      <div className="flex items-center gap-2 mb-6">
-                        <span className="text-2xl">{tripEmojis[trip]}</span>
-                        <h3 className="text-white font-bold text-lg">{trip}</h3>
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{tripEmojis[trip]}</span>
+                          <div>
+                            <h3 className="text-white font-bold text-lg leading-tight">{trip}</h3>
+                            <p className="text-gray-500 text-xs">{tripMeta[trip].dates}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-1 bg-green-500/10 border border-green-500/20 text-green-400 text-xs rounded-full">{tripMeta[trip].status}</span>
+                          {tripMeta[trip].rating !== "TBD" && (
+                            <span className="flex items-center gap-1 px-2.5 py-1 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs rounded-full font-medium">
+                              ★ {tripMeta[trip].rating} overall
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         {tripFood.map((meal) => (
@@ -484,9 +555,22 @@ export default function Travels() {
                   const tripHotels = hotels.filter((h) => h.trip === trip);
                   return (
                     <div key={trip}>
-                      <div className="flex items-center gap-2 mb-6">
-                        <span className="text-2xl">{tripEmojis[trip]}</span>
-                        <h3 className="text-white font-bold text-lg">{trip}</h3>
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{tripEmojis[trip]}</span>
+                          <div>
+                            <h3 className="text-white font-bold text-lg leading-tight">{trip}</h3>
+                            <p className="text-gray-500 text-xs">{tripMeta[trip].dates}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-1 bg-green-500/10 border border-green-500/20 text-green-400 text-xs rounded-full">{tripMeta[trip].status}</span>
+                          {tripMeta[trip].rating !== "TBD" && (
+                            <span className="flex items-center gap-1 px-2.5 py-1 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs rounded-full font-medium">
+                              ★ {tripMeta[trip].rating} overall
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         {tripHotels.map((hotel) => (
