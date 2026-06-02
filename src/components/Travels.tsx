@@ -326,7 +326,7 @@ const tripMeta: Record<string, { emoji: string; dates: string; status: string; r
     emoji: "🦞",
     dates: "May 23 – June 1, 2026",
     status: "Completed",
-    rating: "4.3 / 5",
+    rating: "4.5 / 5",
   },
   Bolivia: {
     emoji: "🦙",
